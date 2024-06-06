@@ -1,0 +1,38 @@
+let string = ""
+let isCal = false
+let isOpt = false
+const buttons = document.querySelectorAll('.buttons')
+buttons.forEach((button)=>{
+    button.addEventListener('click',(e)=>{
+       if(e.target.id == 'red' && isOpt == false){
+           string += e.target.innerHTML
+           isOpt = true
+           isCal = false
+       }
+       else if(e.target.id == 'black'){
+           if(isCal == true){
+            string = ""
+           }
+           string += e.target.innerHTML
+           isOpt = false
+           isCal = false
+       }
+       else if(e.target.innerHTML == 'X'){
+           string = string.slice(0,-1)
+           isOpt = false
+       }
+       else{
+           if(e.target.innerHTML == 'AC'){
+                string = ""
+                isCal = false
+                isOpt = false
+            }
+           if(e.target.innerHTML == '=' && isCal == false){
+                string  = eval(string)
+                isCal = true
+                isOpt = false
+            }
+       }
+        document.querySelector('#input').innerHTML = string
+    })
+})
