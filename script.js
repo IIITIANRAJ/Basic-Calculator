@@ -1,11 +1,15 @@
 let string = ""
 let isCal = false
 let isOpt = false
+let isDot = false;
+
 const buttons = document.querySelectorAll('.buttons')
 buttons.forEach((button)=>{
     button.addEventListener('click',(e)=>{
        if(e.target.id == 'red' && isOpt == false){
+           if(string.length<22){
            string += e.target.innerHTML
+           }
            isOpt = true
            isCal = false
        }
@@ -13,7 +17,13 @@ buttons.forEach((button)=>{
            if(isCal == true){
             string = ""
            }
-           string += e.target.innerHTML
+
+           if(string.length<22){
+            if(e.target.innerHTML != '.' || isDot == false){
+               string += e.target.innerHTML
+               if(e.target.innerHTML == '.') isDot = true
+            }
+           }
            isOpt = false
            isCal = false
        }
@@ -26,11 +36,13 @@ buttons.forEach((button)=>{
                 string = ""
                 isCal = false
                 isOpt = false
+                isDot = false
             }
            if(e.target.innerHTML == '=' && isCal == false){
                 string  = eval(string)
                 isCal = true
                 isOpt = false
+                isDot = false
             }
        }
         document.querySelector('#input').innerHTML = string
