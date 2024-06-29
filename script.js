@@ -7,7 +7,7 @@ const buttons = document.querySelectorAll('.buttons')
 buttons.forEach((button)=>{
     button.addEventListener('click',(e)=>{
        if(e.target.id == 'red' && isOpt == false){
-           if(string.length<22){
+           if(string.length<20){
            string += e.target.innerHTML
            }
            isOpt = true
@@ -18,7 +18,7 @@ buttons.forEach((button)=>{
             string = ""
            }
 
-           if(string.length<22){
+           if(string.length<20){
             if(e.target.innerHTML != '.' || isDot == false){
                string += e.target.innerHTML
                if(e.target.innerHTML == '.') isDot = true
